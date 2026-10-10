@@ -1,0 +1,74 @@
+{
+  "status": "用户确认规则下的离线模型；策略版本独立记录",
+  "confirmed": {
+    "initial_hand": 4,
+    "turn_draw": 2,
+    "equipment_slots": 3,
+    "base_attacks": 1,
+    "death_resolution": "濒死救援失败后，第一个死亡者立即判负，停止所有待结算效果；不存在同时阵亡平局",
+    "equipment_types_unrestricted": true,
+    "duplicate_equipment_allowed": true,
+    "duplicate_equipment_effects_stack": true,
+    "wang_choice": "从牌表同花色装备种类中随机提供至多3个不同候选，选1个；黑桃只有云锦袍",
+    "wang_transformed_equipment_stays_in_hand": true,
+    "gan_batch_spade_triggers_once": true,
+    "gan_changes_suits_permanently": true,
+    "burned_cards_leave_game": true,
+    "minghong_discard_owner": true,
+    "xuanyuan": "指定杀目标时立即使其武将技能本回合失效，该杀无视防具",
+    "ganjiang": "第三方响应出杀，双人无效",
+    "chain": "选择1到2人横置，按铁索式属性伤害传导",
+    "first_pick": "翻2张，使用者选1张，另一人拿剩下的；识破只抵消完整效果",
+    "ground_fire": "判3目标3火伤，双人另一个角色仅一次2火伤，无来源不加羽扇",
+    "more_cards": "摸2张",
+    "rest": "下家起逐目标回复1；满血不是目标；每个目标可以单独被识破",
+    "character_profiles": {
+      "王濬": {
+        "hp": 6,
+        "hand_limit": 3
+      },
+      "甘宁": {
+        "hp": 6,
+        "hand_limit": 3
+      },
+      "白板": {
+        "hp": 4,
+        "hand_limit": 4,
+        "note": "测试用配置"
+      }
+    },
+    "hand_limit_timing": "仅回合结束弃至上限，中途摸牌不限制",
+    "bright_spear": "应战反击会触发对方亮银枪，死亡立即中止",
+    "cloud_exit": "装备超出当前上限则随机逐张弃置至合法",
+    "gan_initial_gain": true,
+    "rage_cost": "第二次及以后随机弃置手牌或装备",
+    "duplicate_minghong": "重复仍只需要2闪",
+    "duplicate_bagua": "不论件数只判定一次",
+    "distance": "生效；爪黄飞电、的卢、飒露紫、绝影+1；其他坐骑-1",
+    "transferred_fire": "传导不再次增加羽扇伤害",
+    "borrowed_attack": "双人可以要求对方杀自己，无杀交一张手牌，不消耗对方正常出杀次数",
+    "chain_recast": "弃置连环摸1张，不作为战法使用"
+  },
+  "pending_cards": [],
+  "pending_interactions": [],
+  "diagnostic_assumptions": {
+    "chain": "实际元素伤害传给其他横置者，每人最多一次；传导不重复羽扇加成；AI优先横置对手并解除自己的横置",
+    "ground_fire": "双人时另一个玩家只算一次相邻角色，受到2点火伤",
+    "duplicate_triggers": "数值加成按件数；触发型装备逐件触发；免疫/无上限等性质不重复；银狮盔按伤害大于1逐件检查",
+    "divination": "翻牌堆顶并弃置；易按原表的1/8点处理",
+    "counterspell": "只响应敌方指定战法，不实现识破反制链",
+    "yi": "仅代替普通杀、闪、桃、怒，待加入其他可代替行动牌",
+    "rescue": "仅自己使用桃、怒、易自救",
+    "round": "先后手各一次后结算，次数永久累计",
+    "deck_empty": "洗回弃牌堆，保留花色变化与转化牌名",
+    "generated": "丈八蛇矛新增牌均匀随机标准花色与1到8点；额外追踪牌ID",
+    "damage_order": "羽扇、藤甲、银狮盔、扣血、自救、的卢；待实战校对",
+    "first_action": "装备和技能不算行动牌，桃/怒/战法算；需实战校对",
+    "range": "多把武器取最大范围；诸葛1、刀剑2、斧/亮银/青龙/丈八3、方天/羽扇4、惊羽/龙舌5",
+    "borrowed_range": "施法者到目标在武器范围内，目标到施法者也在武器范围内",
+    "duplicate_minghong_discard": "抵消后持有者随机弃牌只触发一次",
+    "recast_loop": "AI同一回合不重复重铸相同牌ID，避免空牌堆循环",
+    "skill_versions": "技能标准v1；AI v1/v2/v3独立选择，历史批次存储版本与引擎指纹"
+  },
+  "revision": 4
+}

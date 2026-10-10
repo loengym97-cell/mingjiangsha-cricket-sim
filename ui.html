@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>斗蛐蛐 · 离线工作台</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header><div><h1>斗蛐蛐 <span>离线工作台</span></h1><p>查看模型结果，追溯每一局。</p></div><label>历史批次<select id="runs" aria-label="历史批次"><option>暂无记录</option></select></label></header>
+<main>
+<form id="runForm" class="toolbar">
+<label>左侧武将<select id="left" name="left"><option>王濬</option><option>甘宁</option><option>白板</option></select></label>
+<label>技能<select id="left_version" name="left_version"><option value="v1">标准技能 v1</option></select></label>
+<label>AI<select id="left_ai" name="left_ai"><option value="v3">转化优化 v3</option></select></label>
+<span class="versus">vs</span><label>右侧武将<select id="right" name="right"><option>甘宁</option><option>王濬</option><option>白板</option></select></label>
+<label>技能<select id="right_version" name="right_version"><option value="v1">标准技能 v1</option></select></label>
+<label>AI<select id="right_ai" name="right_ai"><option value="v7">距离拆牌 v7</option></select></label>
+<label>模拟局数<input id="games" name="games" type="number" min="1" max="100000" value="10000" required></label>
+<label>随机种子<input id="seed" name="seed" type="number" min="0" max="9007199254740991" value="20261010" required></label>
+<label>回合上限<input id="max_rounds" name="max_rounds" type="number" min="1" max="1000" value="300" required></label>
+<button class="primary" id="runButton" type="submit">开始模拟</button>
+</form>
+<p id="message" role="status" aria-live="polite">正在读取本地记录…</p><progress id="progress" value="0" max="100" hidden aria-label="模拟进度"></progress>
+<section class="overview" aria-labelledby="summaryTitle"><div class="section-head"><h2 id="summaryTitle">模拟结果</h2><a id="export" hidden>下载结果表 CSV</a></div>
+<p class="notice">这是当前规则与 AI 下的模型胜率。尚有边界规则未确认，不能直接当作游戏实战胜率。</p>
+<div id="summary">尚无完成的批次，选择武将后开始模拟。</div>
+<details id="rules"><summary>查看本批次规则与假设</summary><div id="rulesContent"></div></details></section>
+<div class="workspace">
+<section class="list"><div class="section-head"><h2>逐局记录</h2><span id="total"></span></div>
+<div class="filters"><label>胜者<select id="winner"><option value="">全部</option><option value="0">左侧武将</option><option value="1">右侧武将</option><option value="-1">旧批次双方死亡</option><option value="-2">未结束</option></select></label>
+<label>先手<select id="first"><option value="">全部</option><option value="0">左侧武将</option><option value="1">右侧武将</option></select></label>
+<label>查局号<input id="gameFilter" type="number" min="1" placeholder="例如 123"></label><button id="filterButton" type="button">筛选记录</button></div>
+<div class="table-wrap"><table><thead><tr><th>局号</th><th>胜者</th><th>先手</th><th>轮数</th><th>详情</th></tr></thead><tbody id="gameRows"><tr><td colspan="5">暂无记录</td></tr></tbody></table></div>
+<nav class="pagination" aria-label="对局分页"><button id="prev">上一页</button><span id="pageInfo">第 1 页</span><button id="next">下一页</button></nav></section>
+<section class="detail" aria-labelledby="detailTitle"><div class="section-head"><h2 id="detailTitle">对局详情</h2><button id="downloadDetail" disabled>下载本局 JSON</button></div>
+<p id="detailMeta">选择左侧任意一局，查看每次出牌和技能结算。</p>
+<div id="replay" hidden><div class="replay-tools"><button id="stepPrev">上一步</button><button id="play">自动播放</button><button id="stepNext">下一步</button><span id="stepLabel"></span></div>
+<label class="slider-label">结算进度<input id="step" type="range" min="0" max="0" value="0"></label>
+<p id="currentEvent" class="current-event"></p><div id="board" class="board"></div><p id="pileState" class="muted"></p>
+<p class="muted">手牌与状态来自本地引擎记录。步骤展示结算中的即时状态，最终以“回合结算完成”事件为准。</p>
+<label class="log-search">搜索本局事件<input id="logSearch" type="search" placeholder="输入牌名、技能或伤害"></label><ol id="events" class="events"></ol></div>
+</section></div>
+<footer>完全本地运行 · 逐局数据保存在 results.sqlite3 · 游戏引擎与武将 AI 独立维护</footer>
+</main><script src="/app.js"></script></body></html>
