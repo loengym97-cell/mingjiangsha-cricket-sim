@@ -3,3 +3,4 @@ diagnostic_result.json
 results.sqlite3*
 reports/
 server.log
+dist/

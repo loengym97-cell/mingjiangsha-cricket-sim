@@ -36,7 +36,7 @@ AI只根据己方手牌、对手公开状态决策，不读取对手暗手牌。
 
 ## 验证与历史快照
 
-在 `F:\斗蛐蛐` 运行：
+在项目根目录运行：
 
 ```powershell
 python -m unittest discover -s . -p "test_*.py" -q
